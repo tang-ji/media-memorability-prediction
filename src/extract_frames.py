@@ -1,6 +1,5 @@
 import os
 import sys
-import config
 import pandas as pd
 import cv2
 
