@@ -14,7 +14,7 @@ def get_features_from_image_list(images_list, img_path, h5_filename, batch_size=
     size = 2048
     widgets = ["Extracting Features: ", progressbar.Percentage(), " ", progressbar.Bar(), " ", progressbar.ETA()]
     pbar = progressbar.ProgressBar(maxval=len(images_list), widgets=widgets).start()
-    with h5py.File(h5_filename, 'a') as h5f:
+    with h5py.File(h5_filename, 'w') as h5f:
         for i in np.arange(0, len(images_list), batch_size):
             batch_paths = images_list[i:i + batch_size]
             batch_images = []
