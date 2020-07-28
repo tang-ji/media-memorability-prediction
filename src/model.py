@@ -34,6 +34,10 @@ class Model_Final:
         image = np.expand_dims(image, axis=0)
         image = imagenet_utils.preprocess_input(image)
         return image
+
+    def predict(self, image_path):
+        image = self.load_image(image_path)
+        return self.model_final.predict(image)
     
     def get_heatmap(self, image):
         pooled_grads_value, conv_layer_output_value = self.iterate([image])
