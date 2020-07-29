@@ -61,7 +61,12 @@ class Model_Final:
             os.makedirs('figures/activation_maps/')
         cv2.imwrite('figures/activation_maps/{}_CAM.jpg'.format(image_name), superimposed_img)
         if show:
-            plt.figure(figsize=(10,10), dpi=50)
-            plt.imshow(plt.imread('figures/activation_maps/{}_CAM.jpg'.format(image_name)))
-            plt.axis('off')
+            f, ax = plt.subplots(1, 2, figsize=(10,5), dpi=80)
+            ax[0].set_title("Original image")
+            ax[0].imshow(plt.imread(image_path))
+            ax[0].axis('off')
+
+            ax[1].set_title("Heatmap")
+            ax[1].imshow(plt.imread('figures/activation_maps/{}_CAM.jpg'.format(image_name)))
+            ax[1].axis('off')
         return
