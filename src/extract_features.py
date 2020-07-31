@@ -9,7 +9,7 @@ import numpy as np
 
 IMG_SIZE=(224, 224)
 
-def get_features_from_image_list(images_list, img_path, h5_filename, batch_size=16):
+def get_features_from_image_list(images_list, img_path, h5_filename, batch_size=16, symmetric=False):
     model = ResNet152(weights="imagenet", include_top=False, pooling='avg')
     size = 2048
     widgets = ["Extracting Features: ", progressbar.Percentage(), " ", progressbar.Bar(), " ", progressbar.ETA()]
@@ -21,11 +21,11 @@ def get_features_from_image_list(images_list, img_path, h5_filename, batch_size=
             for img in batch_paths:
                 image = load_img(img_path + img, target_size=IMG_SIZE)
                 image = img_to_array(image)
+                if symmetric:
+                    image = np.array(list(map(lambda x:x[::-1], image)))
                 image = np.expand_dims(image, axis=0)
-                image = imagenet_utils.preprocess_input(image)
                 batch_images.append(image)
                 
-
             batch_images = np.vstack(batch_images)
             features = model.predict(batch_images, batch_size=batch_size)
             features = features.reshape((features.shape[0], size))
