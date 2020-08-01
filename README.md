@@ -2,4 +2,4 @@
 
 A research on Media memorability prediction by ResNet.
 
-Dataset: Lamem
+Dataset: [LaMem](http://memorability.csail.mit.edu/download.html)
