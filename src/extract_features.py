@@ -56,11 +56,10 @@ if __name__ == "__main__":
     X_test = get_features_from_image_list(X_test_list, "lamem/images/", batch_size=512)
     X_val = get_features_from_image_list(X_val_list, "lamem/images/", batch_size=512)
     
+    X = np.concatenate([X_train, X_test, X_val])
     Y = np.concatenate([Y_train, Y_test, Y_val])
     
-    np.save("lamem/train.npy", X_train)
-    np.save("lamem/test.npy", X_test)
-    np.save("lamem/val.npy", X_val)
+    np.save("lamem/X.npy", X)
     np.save("lamem/Y.npy", X_val)
     
     
