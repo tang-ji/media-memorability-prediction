@@ -37,3 +37,26 @@ def get_features_from_image_list(images_list, img_path, batch_size=16, symmetric
     pbar.finish()
 
     return np.vstack(features_full)
+
+if __name__ == "__main__":
+    f_train = open("lamem/splits/train_1.txt").readlines()
+    f_test = open("lamem/splits/test_1.txt").readlines()
+    f_val = open("lamem/splits/val_1.txt").readlines()
+
+    X_train_list = [x[:12] for x in f_train]
+    Y_train = np.array([float(x[13:21]) for x in f_train])
+
+    X_test_list = [x[:12] for x in f_test]
+    Y_test = np.array([float(x[13:21]) for x in f_test])
+
+    X_val_list = [x[:12] for x in f_val]
+    Y_val = np.array([float(x[13:21]) for x in f_val])
+    
+    X_train = get_features_from_image_list(X_train_list, "lamem/images/", batch_size=512)
+    X_test = get_features_from_image_list(X_test_list, "lamem/images/", batch_size=512)
+    X_val = get_features_from_image_list(X_val_list, "lamem/images/", batch_size=512)
+    
+    np.save("lamem/train.npy", X_train)
+    np.save("lamem/test.npy", X_test)
+    np.save("lamem/val.npy", X_val)
+    
