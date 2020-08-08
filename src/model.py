@@ -7,7 +7,8 @@ from keras.applications import imagenet_utils
 from keras.preprocessing.image import img_to_array
 from keras.preprocessing.image import load_img
 from keras import backend as K
-from keras.models import load_model
+from keras.models import load_model, Model
+from keras.layers import *
 
 import numpy as np
 import os

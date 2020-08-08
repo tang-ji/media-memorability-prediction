@@ -1,6 +1,6 @@
 import numpy as np
 
-class prediction_metric:
+class Metric:
     def __init__(self, prediction_path, labels=["negative", "Unknown", "positive"]):
         [self.Y, self.Y_pred] = np.load(prediction_path)
         self.threshold_positive, self.threshold_negative = 0.5, -0.5
