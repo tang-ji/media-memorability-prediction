@@ -34,7 +34,7 @@ class Model_Final:
         image = np.expand_dims(image, axis=0)
         image = imagenet_utils.preprocess_input(image)
         return image
-
+    
     def predict(self, image_path):
         image = self.load_image(image_path)
         return self.model_final.predict(image)
@@ -57,9 +57,9 @@ class Model_Final:
         heatmap = np.uint8(255 * heatmap)
         heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
         superimposed_img = heatmap * 0.4 + image_original
-        if not os.path.exists('figures/activation_maps/'):
-            os.makedirs('figures/activation_maps/')
-        cv2.imwrite('figures/activation_maps/{}_CAM.jpg'.format(image_name), superimposed_img)
+        if not os.path.exists('heatmaps/'):
+            os.makedirs('heatmaps/')
+        cv2.imwrite('heatmaps/{}_heatmap.jpg'.format(image_name), superimposed_img)
         if show:
             f, ax = plt.subplots(1, 2, figsize=(10,5), dpi=80)
             ax[0].set_title("Original image")
@@ -67,6 +67,6 @@ class Model_Final:
             ax[0].axis('off')
 
             ax[1].set_title("Heatmap")
-            ax[1].imshow(plt.imread('figures/activation_maps/{}_CAM.jpg'.format(image_name)))
+            ax[1].imshow(plt.imread('heatmaps/{}_heatmap.jpg'.format(image_name)))
             ax[1].axis('off')
         return
