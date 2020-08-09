@@ -57,7 +57,9 @@ class Model_Final:
         heatmap = cv2.resize(heatmap, (image_original.shape[1], image_original.shape[0]))
         heatmap = np.uint8(255 * heatmap)
         heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
+        heatmap[:,:,0] = 0
         superimposed_img = heatmap * 0.4 + image_original
+        superimposed_img = np.clip(superimposed_img, 0, 255)
         if not os.path.exists('heatmaps/'):
             os.makedirs('heatmaps/')
         cv2.imwrite('heatmaps/{}_heatmap.jpg'.format(image_name), superimposed_img)
