@@ -1,7 +1,7 @@
 import numpy as np
 
 class Label_transformer:
-    def __init__(self, Y, r=1.4):
+    def __init__(self, Y, r=1.5):
         self.mean = np.mean(Y)
         self.std = np.std(Y)
         self.r = r
