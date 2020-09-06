@@ -16,11 +16,11 @@ import matplotlib.pyplot as plt
 import cv2
 
 class Model_Final:
-    def __init__(self, IMG_SIZE=(224, 224)):
+    def __init__(self, IMG_SIZE=(224, 224), model_path="model/"):
         self.model_res = ResNet152(weights="imagenet", include_top=False, pooling='avg')
         self.IMG_SIZE = IMG_SIZE
         input_layer = self.model_res.layers[0]
-        self.model = load_model("model")
+        self.model = load_model(model_path)
         self.model_final = Model(self.model_res.input, self.model(self.model_res.output))
         
         image_output = self.model_final.output[:]
