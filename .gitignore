@@ -134,3 +134,4 @@ dmypy.json
 *.h5
 lamem/X.npy
 lamem/Y.npy
+data/sample_video.mp4
