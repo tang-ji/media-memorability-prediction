@@ -2,6 +2,7 @@
 __pycache__/
 imgs/
 data/
+lamem/
 figures/
 model/
 frame/
